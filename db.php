@@ -1,0 +1,1 @@
+/Users/Eugene/Documents/MAMP PRO/tech-kb/wp-content/plugins/query-monitor/wp-content/db.php
