@@ -29,3 +29,18 @@ function add_snippet_cpt_to_query( $query ) {
 	}
 }
 add_filter( 'pre_get_posts', 'add_snippet_cpt_to_query' );
+
+/**
+ * Make the Snippet CPT posts appear in the category & tag archive result page.
+ */
+function add_snippet_cpt_to_archive( $query ) {
+	if ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+		$query->set( 'post_type', array(
+			'post',
+			'nav_menu_item',
+			'snippet',
+		));
+		return $query;
+	}
+}
+ add_filter( 'pre_get_posts', 'add_snippet_cpt_to_archive' );
