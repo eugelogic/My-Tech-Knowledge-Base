@@ -1,3 +1,4 @@
 # My Tech Knowledge Base project.
 # Ignore the following files:
 plugins/code-snippets-repo/.git
+vendor
