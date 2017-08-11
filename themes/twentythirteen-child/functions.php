@@ -12,3 +12,17 @@ function ttc_theme_enqueue_styles() {
     );
 }
 add_action( 'wp_enqueue_scripts', 'ttc_theme_enqueue_styles' );
+
+// Make the Snippet CPT posts show up on the blog feed.
+function add_snippet_cpt_to_query( $query ) {
+	if(
+		$query->is_home() &&
+		empty( $query->query_vars['suppress_filters'] )
+	) {
+		$query->set( 'post_type', array(
+			'post',
+			'snippet'
+		) );
+	}
+}
+add_filter( 'pre_get_posts', 'add_snippet_cpt_to_query' );
