@@ -75,6 +75,17 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 			 echo '<span class="tags-links">' . $tag_list . '</span>';
 		}
 
+		if ( 'snippet' === get_post_type() ) {
+			// Retrieve the terms of the custom taxonomy Language that are attached to the Snippet custom post type.
+			echo '<br>' . get_the_term_list( $post->ID, 'language', 'Languages: ', ', ' );
+
+			// Retrieve the terms of the custom taxonomy Tool that are attached to the Snippet custom post type.
+			echo '<br>' . get_the_term_list( $post->ID, 'tool', ' Tools: ', ', ' );
+
+			// Retrieve the terms of the custom taxonomy Project that are attached to the Snippet custom post type.
+			echo '<br>' . get_the_term_list( $post->ID, 'project', ' Projects: ', ', ' );
+		}
+
 		  // Post author.
 		if ( 'post' === get_post_type() ) {
 			 printf( '<span class="author vcard"><a class="url fn n" href="%1$s" title="%2$s" rel="author">%3$s</a></span>',
