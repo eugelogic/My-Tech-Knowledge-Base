@@ -1,4 +1,5 @@
 # My Tech Knowledge Base project.
 # Ignore the following files:
 plugins/code-snippets-repo/.git
+plugins/youtube-useful-video-gallery/.git
 vendor
