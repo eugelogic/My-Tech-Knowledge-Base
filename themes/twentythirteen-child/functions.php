@@ -15,7 +15,7 @@ function ttc_theme_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'ttc_theme_enqueue_styles' );
 
 /**
- * Make the Snippet CPT posts show up on the blog feed.
+ * Make all CPT posts show up on the blog feed.
  */
 function add_snippet_cpt_to_query( $query ) {
 	if (
@@ -32,7 +32,7 @@ function add_snippet_cpt_to_query( $query ) {
 add_filter( 'pre_get_posts', 'add_snippet_cpt_to_query' );
 
 /**
- * Make the Snippet CPT posts appear in the category & tag archive result page.
+ * Make all CPT posts appear in the category & tag archive result page.
  */
 function add_snippet_cpt_to_archive( $query ) {
 	if ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
@@ -40,6 +40,7 @@ function add_snippet_cpt_to_archive( $query ) {
 			'post',
 			'nav_menu_item',
 			'snippet',
+			'video'
 		));
 		return $query;
 	}
