@@ -25,6 +25,7 @@ function add_snippet_cpt_to_query( $query ) {
 		$query->set( 'post_type', array(
 			'post',
 			'snippet',
+			'video'
 		) );
 	}
 }
