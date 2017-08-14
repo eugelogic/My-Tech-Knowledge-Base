@@ -77,14 +77,14 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 			 echo '<span class="tags-links">' . $tag_list . '</span>';
 		}
 
-		if ( 'snippet' === get_post_type() ) {
-			// Retrieve the terms of the custom taxonomy Language that are attached to the Snippet custom post type.
+		if ( ! get_post_type('post') ) {
+			// Retrieve the terms of the custom taxonomy Coding Language.
 			echo '<br>' . get_the_term_list( get_the_ID(), 'language', 'Languages: ', ', ' );
 
-			// Retrieve the terms of the custom taxonomy Tool that are attached to the Snippet custom post type.
+			// Retrieve the terms of the custom taxonomy Web Tool.
 			echo '<br>' . get_the_term_list( get_the_ID(), 'tool', ' Tools: ', ', ' );
 
-			// Retrieve the terms of the custom taxonomy Project that are attached to the Snippet custom post type.
+			// Retrieve the terms of the custom taxonomy Project.
 			echo '<br>' . get_the_term_list( get_the_ID(), 'project', ' Projects: ', ', ' );
 		}
 
@@ -116,3 +116,8 @@ function add_custom_fields_to_video( $custom_fields ) {
     return $custom_fields;
 }
 add_filter( 'the_content', 'add_custom_fields_to_video' );
+
+/**
+ * Custom taxonomies.
+ */
+require get_stylesheet_directory() . '/inc/custom-taxonomies.php';
