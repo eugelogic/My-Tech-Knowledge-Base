@@ -42,7 +42,6 @@
 		<?php
 				// Get field values.
 				$video_id = get_post_meta($post->ID, 'video_id', true);
-				// $video_id = get_post_meta(get_the_ID(),'video-id', true);
 				$details = get_post_meta($post->ID, 'details', true);
 			?>
 				<div class="ytuvg-video">
