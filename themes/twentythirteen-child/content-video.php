@@ -54,7 +54,7 @@
 				}
 				?>
 				</div><!-- ytuvg-video -->
-				<div><?php echo $details ?></div>
+				<div><?php echo nl2br($details) ?></div>
 
 
 		<?php
