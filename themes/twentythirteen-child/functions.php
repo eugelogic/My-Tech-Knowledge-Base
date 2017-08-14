@@ -79,13 +79,13 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 
 		if ( 'snippet' === get_post_type() ) {
 			// Retrieve the terms of the custom taxonomy Language that are attached to the Snippet custom post type.
-			echo '<br>' . get_the_term_list( $post->ID, 'language', 'Languages: ', ', ' );
+			echo '<br>' . get_the_term_list( get_the_ID(), 'language', 'Languages: ', ', ' );
 
 			// Retrieve the terms of the custom taxonomy Tool that are attached to the Snippet custom post type.
-			echo '<br>' . get_the_term_list( $post->ID, 'tool', ' Tools: ', ', ' );
+			echo '<br>' . get_the_term_list( get_the_ID(), 'tool', ' Tools: ', ', ' );
 
 			// Retrieve the terms of the custom taxonomy Project that are attached to the Snippet custom post type.
-			echo '<br>' . get_the_term_list( $post->ID, 'project', ' Projects: ', ', ' );
+			echo '<br>' . get_the_term_list( get_the_ID(), 'project', ' Projects: ', ', ' );
 		}
 
 		  // Post author.
