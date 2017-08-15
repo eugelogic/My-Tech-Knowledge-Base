@@ -39,21 +39,25 @@
 	<?php else : ?>
 	<div class="entry-content">
 
+
 		<?php
-				// Get field values.
-				$video_id = get_post_meta($post->ID, 'video_id', true);
-				$details = get_post_meta($post->ID, 'details', true);
-			?>
-				<div class="ytuvg-video">
-				<?php
-				if(get_settings('ytuvg_setting_disable_fullscreen')){
-						 echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0"></iframe>';
-				} else {
-						 echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>';
+			// Get field values.
+			$video_id = get_post_meta( get_the_ID(), 'video_id', true);
+			// $details = get_post_meta( get_the_ID(), 'details', true);
+		?>
+		<div class="ytuvg-video">
+			<?php
+				if ( get_settings ( 'ytuvg_setting_disable_fullscreen' ) ) {
+					$video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.esc_attr($video_id).'" frameborder="0"></iframe>';
+		 		} else {
+					$video = '<iframe width="560" height="315" src="https://www.youtube.com/embed/'.esc_attr($video_id).'" frameborder="0" allowfullscreen></iframe>';
 				}
-				?>
-				</div><!-- ytuvg-video -->
-				<div><?php echo nl2br($details) ?></div>
+			?>
+		</div><!-- ytuvg-video -->
+
+		<div>
+			<?php echo $video . wpautop(get_post_meta( get_the_id(), 'details', true)); ?>
+		</div>
 
 
 		<?php
