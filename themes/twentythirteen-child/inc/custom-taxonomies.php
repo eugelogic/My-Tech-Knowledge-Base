@@ -110,3 +110,26 @@ unset( $labels );
 
 }
 add_action('init', 'create_tech_kb_taxonomies', 0);
+
+if ( ! function_exists( 'show_tech_kb_taxonomies' ) ) :
+	/**
+	 *
+	 * Show all custom taxonomies.
+	 *
+	 */
+function show_tech_kb_taxonomies()
+  {
+    if (has_term('', 'language')) {
+    // Retrieve the terms of the custom taxonomy Coding Language.
+    echo '<br>' . get_the_term_list( get_the_ID(), 'language', 'Languages: ', ', ' );
+    }
+    if (has_term('', 'tool')) {
+    // Retrieve the terms of the custom taxonomy Web Tool.
+    echo '<br>' . get_the_term_list( get_the_ID(), 'tool', ' Tools: ', ', ' );
+    }
+    if (has_term('', 'project')) {
+    // Retrieve the terms of the custom taxonomy Project.
+    echo '<br>' . get_the_term_list( get_the_ID(), 'project', ' Projects: ', ', ' );
+    }
+  }
+endif;
