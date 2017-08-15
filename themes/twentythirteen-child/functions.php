@@ -1,51 +1,58 @@
 <?php
-/**
- * Enqueue the parent and child theme stylesheets,
- * as seen here https://developer.wordpress.org/themes/advanced-topics/child-themes/#3-enqueue-stylesheet.
- */
-function ttc_theme_enqueue_styles() {
-	$parent_style = 'twentythirteen-style';
-	wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'child-style',
-		get_stylesheet_directory_uri() . '/style.css',
-		array( $parent_style ),
-		wp_get_theme()->get( 'Version' )
-	);
-}
+
+if ( ! function_exists( 'ttc_theme_enqueue_styles' ) ) :
+	/**
+	 * Enqueue the parent and child theme stylesheets,
+	 * as seen here https://developer.wordpress.org/themes/advanced-topics/child-themes/#3-enqueue-stylesheet.
+	 */
+	function ttc_theme_enqueue_styles() {
+		$parent_style = 'twentythirteen-style';
+		wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+		wp_enqueue_style( 'child-style',
+			get_stylesheet_directory_uri() . '/style.css',
+			array( $parent_style ),
+			wp_get_theme()->get( 'Version' )
+		);
+	}
 add_action( 'wp_enqueue_scripts', 'ttc_theme_enqueue_styles' );
+endif; // ttc_theme_enqueue_styles
 
-/**
- * Make all CPT posts show up on the blog feed.
- */
-function add_all_cpt_to_query( $query ) {
-	if (
-		$query->is_home() &&
-		empty( $query->query_vars['suppress_filters'] )
-	) {
-		$query->set( 'post_type', array(
-			'post',
-			'snippet',
-			'video'
-		) );
+if ( ! function_exists( 'add_all_cpt_to_query' ) ) :
+	/**
+	 * Make all CPT posts show up on the blog feed.
+	 */
+	function add_all_cpt_to_query( $query ) {
+		if (
+			$query->is_home() &&
+			empty( $query->query_vars['suppress_filters'] )
+		) {
+			$query->set( 'post_type', array(
+				'post',
+				'snippet',
+				'video'
+			) );
+		}
 	}
-}
 add_filter( 'pre_get_posts', 'add_all_cpt_to_query' );
+endif; // add_all_cpt_to_query
 
-/**
- * Make all CPT posts appear in the category & tag archive result page.
- */
-function add_all_cpt_to_archive( $query ) {
-	if ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
-		$query->set( 'post_type', array(
-			'post',
-			'nav_menu_item',
-			'snippet',
-			'video'
-		));
-		return $query;
+if ( ! function_exists( 'add_all_cpt_to_archive' ) ) :
+	/**
+	 * Make all CPT posts appear in the category & tag archive result page.
+	 */
+	function add_all_cpt_to_archive( $query ) {
+		if ( is_category() || is_tag() && empty( $query->query_vars['suppress_filters'] ) ) {
+			$query->set( 'post_type', array(
+				'post',
+				'nav_menu_item',
+				'snippet',
+				'video'
+			));
+			return $query;
+		}
 	}
-}
- add_filter( 'pre_get_posts', 'add_all_cpt_to_archive' );
+add_filter( 'pre_get_posts', 'add_all_cpt_to_archive' );
+endif; // add_all_cpt_to_query
 
 if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 	/**
@@ -91,9 +98,9 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 			 );
 		}
 	}
- endif;
+endif; // twentythirteen_entry_meta
 
-if ( ! function_exists('add_custom_fields_to_video') ) {
+if ( ! function_exists('add_custom_fields_to_video') ) :
 	/**
 	 * Add custom fields to the Video CPT output
 	 *
@@ -116,10 +123,8 @@ if ( ! function_exists('add_custom_fields_to_video') ) {
 					}
 	        return $video . $details . wpautop(get_post_meta( get_the_id(), 'details', true));
 	    }
-
-	add_filter( 'the_content', 'add_custom_fields_to_video' );
-
-}
+add_filter( 'the_content', 'add_custom_fields_to_video' );
+endif; // add_custom_fields_to_video
 
 /**
  * Custom taxonomies.
