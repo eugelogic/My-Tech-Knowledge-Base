@@ -77,16 +77,9 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 			 echo '<span class="tags-links">' . $tag_list . '</span>';
 		}
 
-		if ( ! get_post_type('post') ) {
-			// Retrieve the terms of the custom taxonomy Coding Language.
-			echo '<br>' . get_the_term_list( get_the_ID(), 'language', 'Languages: ', ', ' );
-
-			// Retrieve the terms of the custom taxonomy Web Tool.
-			echo '<br>' . get_the_term_list( get_the_ID(), 'tool', ' Tools: ', ', ' );
-
-			// Retrieve the terms of the custom taxonomy Project.
-			echo '<br>' . get_the_term_list( get_the_ID(), 'project', ' Projects: ', ', ' );
-		}
+		// Show all custom taxonomies.
+		$custom_taxonomies = show_tech_kb_taxonomies();
+		return $custom_taxonomies;
 
 		  // Post author.
 		if ( 'post' === get_post_type() ) {
