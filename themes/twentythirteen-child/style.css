@@ -11,3 +11,9 @@
  Tags: blog, one-column, two-columns, right-sidebar, custom-header, custom-menu, editor-style, featured-images, footer-widgets, microformats, post-formats, rtl-language-support, sticky-post, translation-ready, accessibility-ready
  Text Domain:  twentythirteen-child
 */
+
+.large-entry-content {
+    margin: 0 auto;
+    max-width: 1080px;
+    width: 100%;
+}
