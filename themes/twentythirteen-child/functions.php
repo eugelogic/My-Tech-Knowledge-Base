@@ -29,7 +29,8 @@ if ( ! function_exists( 'add_all_cpt_to_query' ) ) :
 			$query->set( 'post_type', array(
 				'post',
 				'snippet',
-				'video'
+				'video',
+				'wlr_web_link'
 			) );
 		}
 	}
@@ -46,7 +47,8 @@ if ( ! function_exists( 'add_all_cpt_to_archive' ) ) :
 				'post',
 				'nav_menu_item',
 				'snippet',
-				'video'
+				'video',
+				'wlr_web_link'
 			));
 			return $query;
 		}
